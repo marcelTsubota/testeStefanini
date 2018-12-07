@@ -49,6 +49,7 @@ namespace FileReaderTest.Controllers
             using (StreamReader reader = new StreamReader(fileAddr))
             {
                 text = reader.ReadLine();
+                ViewBag.Message = text;
                 string[] lines = text.Split(';');
                 foreach (string line in lines)
                 {
