@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<FileReaderTest.Models.Cliente>
-
-@{
-    ViewBag.Title = "Index";
-}
+@using (Html.BeginForm("Submit", "Clientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    {
+        ViewBag.Title = "Index";
+    }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Arquivo", "ReadFile", "Clientes", Request.FilePath)*@
+    <input type="file" name="file" />
+    <input type="submit" value="Ler" />
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -32,32 +36,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sobrenome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataNasc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sexo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ClienteID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ClienteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ClienteID })
-        </td>
-    </tr>
-}
+    @*@foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNasc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ClienteID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ClienteID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ClienteID })
+                </td>
+            </tr>
+        }*@
 
 </table>
+}

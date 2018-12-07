@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using FileReaderTest.DAL;
+using FileReaderTest.Models;
+using System;
 using System.Data.Entity;
-using System.Linq;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using FileReaderTest.DAL;
-using FileReaderTest.Models;
 
 namespace FileReaderTest.Controllers
 {
     public class ClientesController : Controller
     {
         private Context db = new Context();
-
-        // Leitura de arquivo
-
 
         // GET: Clientes
         public ActionResult Index()
@@ -40,10 +36,32 @@ namespace FileReaderTest.Controllers
             return View(cliente);
         }
 
-        // GET: Clientes/Create
-        public ActionResult Create()
+        [HttpPost]
+       public ActionResult Submit(HttpPostedFileBase file)
         {
-            return View();
+            int i = 0;
+            int j = 0;
+            string text;
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string filename = Path.GetFileName(Request.Files[0].FileName);
+            Request.Files[0].SaveAs(Path.Combine(path, filename));
+            string fileAddr = Path.Combine(path, filename);
+            using (StreamReader reader = new StreamReader(fileAddr))
+            {
+                text = reader.ReadLine();
+                string[] lines = text.Split(';');
+                foreach (string line in lines)
+                {
+                    j++;
+                    string[] datas = line.Split(',');
+                    foreach (string data in datas)
+                    {
+                        i++;
+                    }
+                    i = 0;
+                }   
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: Clientes/Create

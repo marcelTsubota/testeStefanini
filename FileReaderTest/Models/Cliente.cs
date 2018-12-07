@@ -10,9 +10,10 @@ namespace FileReaderTest.Models
         public int ClienteID { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
-        public DateTime DataNasc { get; set; }
+        public DateTime? DataNasc { get; set; }
         public string Sexo { get; set; }
         public string Email { get; set; }
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
+        public string File { get; set; }
     }
 }
